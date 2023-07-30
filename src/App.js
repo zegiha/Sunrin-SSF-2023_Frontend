@@ -26,7 +26,6 @@ const App = () => {
           </MoreInfoButton>
         </MainScreencontainer>
       </MainScreen>
-      <button onClick={alert('시발')}>test</button>
       <AboutSSF ref={aboutSSF}>
         <AboutSSFTexts>
           <SubTitle>행사 소개</SubTitle><Blank size={"24px"}/>
@@ -39,13 +38,13 @@ const App = () => {
           <Picture gap={"107px"}/>
         </AboutSSFPictures>
       </AboutSSF>
-      <Section2>
-        <Camp ref={camp}>
+      <Section2 ref={camp}>
+        <Camp>
           <CampTexts>
             <SubTitle>캠프 목록</SubTitle><Blank size={"10px"}/>
             <Title>어떤 캠프가 있을까요?</Title><Blank size={"28px"}/>
             <MainText>웹, 게임, 인공지능, IoT, 해킹까지 여러 분야의 멘토와 함께 소프트웨어 나눔 축제를 즐겨보세요!<br/>소프트웨어과, 정보보호과의 11개의 동아리 캠프가 준비되어있습니다!</MainText>
-          </CampTexts><Blank size={"81px"}/>
+          </CampTexts><Blank size={"51px"}/>
           <CampList/>
         </Camp>
         <Schaedule ref={schaedule}>

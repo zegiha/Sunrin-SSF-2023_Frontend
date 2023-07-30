@@ -1,7 +1,7 @@
 import React  from 'react';
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {A11y, Navigation, Pagination, Scrollbar} from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -88,32 +88,9 @@ const campInfo = [
 
 const CampList = () => {
   return (
-    <StyledSwiper
-      modules={[Pagination]}
-      className="banner"
-      spaceBetween={3}
-      slidesPerView={1}
-      navigation={true}
-    >
-      {[...Array(3)].map((_, i) => {
-       return( <CardList key={i}
-        style={{
-          display:'flex',
-          gap:'25px',
-          justifyContent:'center'
-        }}
-       >
-          {[...Array(4)].map((_, j) => {
-            const info = campInfo[i * 4 + j];
-            if(!info) return null;
-            return (
-              <Card color={info.color} img={info.img} name={info.name} title={info.title}/>
-            );
-          })}
-       </CardList>)
-          })}
-
-    </StyledSwiper>
+    <>
+      <Desktop/>
+    </>
   );
 };
 const StyledSwiper = styled(Swiper)`
@@ -123,23 +100,38 @@ const StyledSwiper = styled(Swiper)`
   justify-content: space-between;
   align-items: flex-start;
 `;
-// const Desktop = () => {
-//   return(
-//     <>
-//       {campInfo.map((info, i) => {
-//         {[...Array(2)].map((_, i) => (
-//         return(
-//           <>
-//             <CardList key={i}>
-//               <Card color={info.color} img={info.img} name={info.name} title={info.title}/>
-//               {/*<Card color={info.color} img={info.img} name={info.name} title={info.title}/>*/}
-//               {/*<Card color={info.color} img={info.img} name={info.name} title={info.title}/>*/}
-//             </CardList>
-//           </>
-//         )}})}
-//     </>
-//   )
-// };
+const Desktop = () => {
+  return(
+    <>
+      <StyledSwiper
+        modules={[Pagination, Navigation]}
+        className="banner"
+        spaceBetween={3}
+        slidesPerView={1}
+        navigation={true}
+        pagination={{clickable: true}}
+      >
+        {[...Array(3)].map((_, i) => {
+          return( <CardList key={i}
+                            style={{
+                              display:'flex',
+                              gap:'25px',
+                              justifyContent:'center'
+                            }}
+          >
+            {[...Array(4)].map((_, j) => {
+              const info = campInfo[i * 4 + j];
+              if(!info) return null;
+              return (
+                <Card color={info.color} img={info.img} name={info.name} title={info.title}/>
+              );
+            })}
+          </CardList>)
+        })}
+      </StyledSwiper>
+    </>
+  )
+};
 const CardList = styled(SwiperSlide)`
   display: flex;
   align-items: flex-start;
@@ -175,7 +167,7 @@ const CampTitle = styled.div`
   font-size: 23px;
   width: 223px;
   line-height: 150%; /* 34.5px */
-  margin-top: 40px;
+  margin-top: 20px;
   letter-spacing: -1.38px;
 `;
 const ClubName = styled.div`
@@ -187,7 +179,7 @@ const ClubName = styled.div`
   font-weight: 600;
   line-height: 150%; /* 33px */
   letter-spacing: -1.32px;
-  margin-top: 8px;
+  margin-top: 6px;
 `;
 
 export default CampList;

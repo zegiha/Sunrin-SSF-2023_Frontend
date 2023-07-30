@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
 import logoImg from '../img/logo.svg'
-import {hover} from "@testing-library/user-event/dist/hover";
 
 const Header = (props) => {
-  const clickToMove = (goal) => {
-    goal.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    console.log('clicked');
+  const clickToMove = (goal, num) => {
+    const {offsetTop} = goal.current;
+    if (num === 1) window.scrollTo({behavior: "smooth", top: offsetTop - 100});
+    else if (num === 2) window.scrollTo({behavior: "smooth", top: offsetTop + 140});
+    else window.scrollTo({behavior: "smooth", top: offsetTop})
   };
 
   return (
@@ -15,9 +16,9 @@ const Header = (props) => {
         <Logo src={logoImg} alt={"logoImg"}></Logo>
         <Right>
           <TextButtonList>
-            <TextButton onClick={console.log('it clicked')}>SSF 소개</TextButton>
-            <TextButton onClick={clickToMove(props.camp)}>캠프 소개</TextButton>
-            <TextButton onClick={clickToMove(props.schaedule)}>나눔축제 일정</TextButton>
+            <TextButton onClick={() => {clickToMove(props.aboutSSF, 1)}}>SSF 소개</TextButton>
+            <TextButton onClick={() => {clickToMove(props.camp, 2)}}>캠프 목록</TextButton>
+            <TextButton onClick={() => {clickToMove(props.schaedule, 3)}}>나눔축제 일정</TextButton>
           </TextButtonList>
           <ApplyButton/>
         </Right>
