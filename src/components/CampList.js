@@ -166,10 +166,10 @@ const ClubImg = styled.img`
   box-shadow: 0px 4px 10px 0px rgba(200, 213, 222, 0.25);
   margin-bottom: 40px;
   object-fit: cover;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
-    filter: brightness(0.9);
+    filter: brightness(0.96);
     scale: 1.05;
   };
 

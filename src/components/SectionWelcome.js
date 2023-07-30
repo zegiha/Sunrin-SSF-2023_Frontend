@@ -2,25 +2,30 @@ import arrow6 from "../img/arrow6.svg";
 import React from "react";
 import styled from "styled-components";
 
-const SectionWelcome = ({ref}) => {
-    return (
-      <MainScreen ref={ref}>
-        <MainScreencontainer>
-            <MainScreenTexts>
-                <SubTitle>2023 소프트웨어 나눔 축제</SubTitle>
-                <MainScreenTitle>"함께 나누고 성장하는 소프트웨어의 향연, <br/>  소프트웨어 나눔 축제로 행복을 만들어요!"</MainScreenTitle>
-            </MainScreenTexts>
+const SectionWelcome = (props) => {
+  const clickToMove = () => {
+    const {offsetTop} = props.aboutSSF.current;
+    console.log(props.aboutSSF);
+    window.scrollTo({behavior: "smooth", top: offsetTop - 100});
+  };
 
-        </MainScreencontainer>
-          <MoreInfoButton>
-              {/*<Icon name={"arrow-down"} />*/}
-              더 알아보기
-          </MoreInfoButton>
-          <IconBackground
-            src={"background.png"}
-          />
-        </MainScreen>
-    );
+  return (
+    <MainScreen>
+      <MainScreencontainer>
+          <MainScreenTexts>
+              <SubTitle>2023 소프트웨어 나눔 축제</SubTitle>
+              <MainScreenTitle>"함께 나누고 성장하는 소프트웨어의 향연, <br/>  소프트웨어 나눔 축제로 행복을 만들어요!"</MainScreenTitle>
+          </MainScreenTexts>
+      </MainScreencontainer>
+        <MoreInfoButton onClick={() => {clickToMove()}}>
+            {/*<Icon name={"arrow-down"} />*/}
+            더 알아보기
+        </MoreInfoButton>
+        <IconBackground
+          src={"background.png"}
+        />
+      </MainScreen>
+  );
 }
 
 const IconBackground = styled.img`
@@ -94,9 +99,9 @@ const MoreInfoButton = styled.button`
     position: absolute;
     bottom: 0;
     cursor: pointer;
+  transition: all 0.3s ease-in-out;
     &:hover {
-      filter: brightness(0.9);
-        
+      scale: 1.06;
     }
     margin-bottom: 60px;
 `;

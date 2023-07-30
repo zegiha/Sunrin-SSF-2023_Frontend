@@ -4,7 +4,7 @@ import {Blank, MainText, SubTitle, Title} from "./atomic";
 
 const Introduce = ({ref}) => {
   return(
-    <Container ref={ref}>
+    <Introduce ref={ref}>
       <Wrapper>
         <AboutSSFTexts>
           <SubTitle>행사 소개</SubTitle><Blank size={"24px"}/>
@@ -18,7 +18,7 @@ const Introduce = ({ref}) => {
           <Picture gap={"107px"}/>
         </AboutSSFPictures>
       </Wrapper>
-    </Container>
+    </Introduce>
   )
 }
 

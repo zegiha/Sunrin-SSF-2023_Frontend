@@ -5,20 +5,23 @@ import logoImg from '../img/logo.svg'
 const Header = (props) => {
   const clickToMove = (goal, num) => {
     const {offsetTop} = goal.current;
-    if (num === 1) window.scrollTo({behavior: "smooth", top: offsetTop - 100});
+    if (num === 0) window.scrollTo({behavior: "smooth", top: 0});
+    else if (num === 1) window.scrollTo({behavior: "smooth", top: offsetTop - 100});
     else if (num === 2) window.scrollTo({behavior: "smooth", top: offsetTop + 140});
-    else window.scrollTo({behavior: "smooth", top: offsetTop})
+    else if (num === 3) window.scrollTo({behavior: "smooth", top: offsetTop - 370})
+    else window.scrollTo({behavior: "smooth", top: offsetTop - 70})
   };
 
   return (
     <Container>
       <Wrapper>
-        <Logo src={logoImg} alt={"logoImg"}></Logo>
+        <LogoButton onClick={() => {clickToMove(props.aboutSSF, 0)}}><Logo src={logoImg} alt={"logoImg"}/></LogoButton>
         <Right>
           <TextButtonList>
             <TextButton onClick={() => {clickToMove(props.aboutSSF, 1)}}>SSF 소개</TextButton>
             <TextButton onClick={() => {clickToMove(props.camp, 2)}}>캠프 목록</TextButton>
             <TextButton onClick={() => {clickToMove(props.schaedule, 3)}}>나눔축제 일정</TextButton>
+            <TextButton onClick={() => {clickToMove(props.attend, 4)}}>참가신청</TextButton>
           </TextButtonList>
 
           <ApplyButton/>
@@ -29,7 +32,13 @@ const Header = (props) => {
 };
 
 
-
+const LogoButton = styled.button`
+  width: auto;
+  height: auto;
+  border: 0 solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+`;
 const Container = styled.header`
   position: fixed;
   top:0;

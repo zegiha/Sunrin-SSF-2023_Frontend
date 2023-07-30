@@ -6,17 +6,30 @@ import CampList from "./components/CampList";
 import ScdBackDesk_1 from './img/ScdBackDesk_1.svg';
 import ScdBackDesk_2 from './img/ScdBackDesk_2.svg';
 import SectionWelcome from "./components/SectionWelcome";
-import Introduce from "./components/Introduce";
 import {Blank, MainText, SubTitle, Title} from "./components/atomic";
+import Footer from "./components/Footer";
 
 const App = () => {
-  const aboutSSF = useRef(), camp = useRef(), schaedule = useRef();
-
+  const aboutSSF = useRef(), camp = useRef(), schaedule = useRef(), attend = useRef();
   return (
     <Container>
-      <Header aboutSSF={aboutSSF} camp={camp} schaedule={schaedule}/>
-      <SectionWelcome/>
-      <Introduce ref={aboutSSF}/>
+      <Header aboutSSF={aboutSSF} camp={camp} schaedule={schaedule} attend={attend}/>
+      <SectionWelcome aboutSSF={aboutSSF}/>
+      <Introduce ref={aboutSSF}>
+        <Wrapper>
+          <AboutSSFTexts>
+            <SubTitle>행사 소개</SubTitle><Blank size={"24px"}/>
+            <Title width={"489px"}>선린 소프트웨어<br/>나눔 축제란 무엇일까요?</Title>
+            <Blank size={"50px"}/>
+            <MainText width={"713px"}>선린인터넷고등학교 소프트웨어 나눔 축제, SSF는 2018년부터 개최된<br/>선린인터넷고등학교의 최대 축제 중 하나입니다. 먼저 소프트웨어를 경험한<br/>사람들이 미래 세대에게 소프트웨어에 대한 경험을 나누고, 다양한 소프트웨어를<br/>직접 만들고 체험해볼 수 있는 행사입니다</MainText><Blank size={"20px"}/>
+            <MainText width={"750px"}>축제에는 수도권에 거주하는 모든 중학생들이 신청할 수 있으며, 학생들은 게임 개발, 웹 및 서버 개발 등 다양한 소프트웨어 분야에 대해 체험해볼 수 있습니다.</MainText>
+          </AboutSSFTexts>
+          <AboutSSFPictures>
+            <Picture/>
+            <Picture gap={"107px"}/>
+          </AboutSSFPictures>
+        </Wrapper>
+      </Introduce>
       <Section2 ref={camp}>
         <Camp>
           <CampTexts>
@@ -67,7 +80,23 @@ const App = () => {
             </TextContainer>
           </TextLine>
         </Schaedule>
+        <Attend ref={attend}>
+          <SubTitle>참가신청</SubTitle><Blank size={"10px"}/>
+          <Title>이제 신청해볼까요?</Title><Blank size={"50px"}/>
+          <AttendBox>
+            <AttendTexts>
+              <AttendTitle><DiffColor color={"#23FBD6"}>어떻게</DiffColor> 신청하나요?</AttendTitle><Blank size={"15px"}/>
+              <AttendContents>아래의 버튼을 통해 신청 접수 폼으로 이동할 수 있어요.</AttendContents><Blank size={"15px"}/>
+            </AttendTexts><Blank size={"100px"}/>
+            <AttendTexts>
+              <AttendTitle>신청 결과는 <DiffColor color={"#30BFEB"}>언제</DiffColor> 알 수 있나요?</AttendTitle><Blank size={"15px"}/>
+              <AttendContents>아래의 버튼을 통해 신청 접수 폼으로 이동할 수 있어요.</AttendContents><Blank size={"15px"}/>
+            </AttendTexts>
+          </AttendBox><Blank size={"70px"}/>
+          <AttendButton>신청하러 가기</AttendButton>
+        </Attend>
       </Section2>
+      <Footer/>
     </Container>
   );
 };
@@ -83,7 +112,38 @@ const Container = styled.main`
 
 
 
+const Wrapper = styled.div`
+  width: 1320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: auto;
+  `;
 
+
+const Introduce = styled.section`
+  width: 100vw;
+  margin: 180px 0;
+  display: flex;
+  justify-content: center;
+`;
+const AboutSSFTexts = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const AboutSSFPictures = styled.div`
+  display: flex;
+  gap: 30px;
+  width: auto;
+  height: auto;
+`;
+const Picture = styled.div`
+  width: 188px;
+  height: 603px;
+  margin-top: ${(props) => props.gap};
+  background-color: #D9D9D9;
+`;
 const Section2 = styled.div`
   width: 99.1vw;
   height: auto;
@@ -178,6 +238,78 @@ const ScdText = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 140%; /* 22.4px */
+`;
+const Attend = styled.div`
+  margin: 293px auto 293px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const AttendBox = styled.div`
+  width: 1320px;
+  height: 560px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #E6E6E6;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const AttendTexts = styled.div`
+  width: 950px;
+  height: auto;
+  border-bottom: 2px solid #D4D4D4;
+`;
+const AttendTitle = styled.div`
+  color: var(--text-main, #333);
+  width: auto;
+  height: auto;
+  /* SUIT.semibold.32 */
+  font-family: SUIT, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
+const AttendContents = styled.div`
+  color: var(--text-sub, #888D98);
+  width: auto;
+  height: auto;
+  /* SUIT.medium.22 */
+  font-family: SUIT, sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+const AttendButton = styled.button`
+  display: flex;
+  width: 455px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  border: 0 solid transparent;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #23CAFF 0%, #5CE9CF 100%);
+  box-shadow: 0 4px 20px 0 rgba(46, 218, 210, 0.10);
+  font-family: SUIT, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #FFF;
+  transition: all 0.4s ease-in-out;
+  &:hover{
+    background: #FFF;
+    color: #25282B;
+    border: 2px solid transparent;
+    border-image: linear-gradient(135deg, #23CAFF 0%, #5CE9CF 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
 `;
 
 export default App;
