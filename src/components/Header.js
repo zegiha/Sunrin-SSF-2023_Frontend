@@ -20,12 +20,15 @@ const Header = (props) => {
             <TextButton onClick={() => {clickToMove(props.camp, 2)}}>캠프 목록</TextButton>
             <TextButton onClick={() => {clickToMove(props.schaedule, 3)}}>나눔축제 일정</TextButton>
           </TextButtonList>
+
           <ApplyButton/>
         </Right>
       </Wrapper>
     </Container>
   );
 };
+
+
 
 const Container = styled.header`
   position: fixed;
@@ -34,14 +37,15 @@ const Container = styled.header`
   height: 60px;
   display: flex;
   justify-content: center;
+  align-items: center;
   background: white;
   z-index: 10;
 `
 
 const Wrapper = styled.div`
-  width: 1200px;
+  width: 1320px;
   margin: 0 auto 0 auto;
-  height: 60px;
+  height: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,19 +57,22 @@ const Logo = styled.img`
 `;
 const TextButtonList = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 269px;
-  height: auto;
+  gap: 20px;
+  height: 100%;
 `;
 const TextButton = styled.button`
-  font-family: SUIT, sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: #404348;
-  
-  background-color: transparent;
+  background-color: white;
+  border-radius: 6px;
+  padding: 10px 12px;
   border: 0;
-  
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    background-color: rgba(0,0,0,0.05)
+  }
 `;
 const ApplyButton = () => {
   return(
@@ -90,7 +97,9 @@ const Button = styled.button`
 `;
 const Right = styled.div`
   display: flex;
-  gap: 46px;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
 `;
 
 export default Header;
